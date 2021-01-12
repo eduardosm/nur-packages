@@ -15,4 +15,5 @@
   overlays = import ./overlays; # nixpkgs overlays
 
   autofirma = pkgs.callPackage ./pkgs/autofirma { };
+  configuradorfnmt = pkgs.callPackage ./pkgs/configuradorfnmt { };
 }
