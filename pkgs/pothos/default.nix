@@ -1,4 +1,4 @@
-{ stdenv
+{ gcc9Stdenv
 , fetchFromGitHub
 , makeDesktopItem
 , cmake
@@ -17,7 +17,8 @@
 , python3
 }:
 
-stdenv.mkDerivation rec {
+# Fails to build with GCC 10
+gcc9Stdenv.mkDerivation rec {
   pname = "pothos";
   version = "0.7.0";
 
@@ -35,9 +36,7 @@ stdenv.mkDerivation rec {
 
   buildInputs = [
     pcre poco qtbase qtsvg libsForQt5.qwt nlohmann_json
-    soapysdr-with-plugins portaudio alsaLib
-    # FIXME: Python support
-    #python3
+    soapysdr-with-plugins portaudio alsaLib python3
   ];
 
   cmakeFlags = [
@@ -62,7 +61,7 @@ stdenv.mkDerivation rec {
     wrapQtApp $out/bin/PothosFlow
   '';
 
-  meta = with stdenv.lib; {
+  meta = with gcc9Stdenv.lib; {
     description = "The Pothos data-flow framework";
     homepage = "https://github.com/pothosware/PothosCore/wiki";
     license = licenses.boost;
