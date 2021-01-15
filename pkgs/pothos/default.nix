@@ -14,6 +14,7 @@
 , soapysdr-with-plugins
 , portaudio
 , alsaLib
+, muparserx
 , python3
 }:
 
@@ -36,13 +37,7 @@ gcc9Stdenv.mkDerivation rec {
 
   buildInputs = [
     pcre poco qtbase qtsvg libsForQt5.qwt nlohmann_json
-    soapysdr-with-plugins portaudio alsaLib python3
-  ];
-
-  cmakeFlags = [
-    "-DENABLE_INTERNAL_POCO=OFF"
-    "-DENABLE_INTERNAL_MUPARSERX=ON"
-    "-DENABLE_INTERNAL_SPUCE=ON"
+    soapysdr-with-plugins portaudio alsaLib muparserx python3
   ];
 
   postInstall = ''
