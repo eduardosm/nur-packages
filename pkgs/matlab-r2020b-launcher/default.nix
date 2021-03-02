@@ -95,7 +95,10 @@ stdenv.mkDerivation rec {
     install -d $out/bin
     ln -s "${fhsEnv}/bin/matlab-r2020b-env" $out/bin/matlab-r2020b-env
 
-    substituteAll ${./run-matlab.sh} $out/bin/matlab-r2020b
+    cat <<EOF > $out/bin/matlab-r2020b
+    #!${bash}/bin/sh
+    ${fhsEnv}/bin/matlab-r2020b-env ${installDir}/bin/matlab "$@"
+    EOF
     chmod +x $out/bin/matlab-r2020b
 
     install -d $out/share/applications
