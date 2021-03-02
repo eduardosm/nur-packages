@@ -86,8 +86,6 @@ stdenv.mkDerivation rec {
 
   dontUnpack = true;
 
-  inherit bash installDir;
-
   installPhase = ''
     runHook preInstall
 
