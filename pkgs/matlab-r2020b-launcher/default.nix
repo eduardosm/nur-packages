@@ -48,7 +48,6 @@ stdenv.mkDerivation rec {
       #gfortran
 
       udev
-      jre
       ncurses
     ]) ++ (with pkgs.xorg; [
       libSM
